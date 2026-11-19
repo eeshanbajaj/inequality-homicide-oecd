@@ -9,7 +9,7 @@ This repository documents an observational study of income inequality and homici
 | Folder | Contents |
 |---|---|
 | `code/` | R scripts for descriptive analysis, institutional models, Krauth (2016) sensitivity analysis, and controlled panel and within–between models |
-| `data/processed/` | Cleaned, matched World Bank panel (569 country-years, 37 countries) and the verified 30-country institutional dataset (351 underlying matched country-years) |
+| `data/processed/` | Cleaned, matched World Bank panel (569 country-years, 37 countries) and the 30-country institutional dataset (351 underlying matched country-years) |
 | `results/` | Exported, previously calculated institutional checks and Krauth RCR results for Appendix Table A6 |
 | `paper/` | Placeholder for the final paper; no draft PDF included in this starter package |
 
