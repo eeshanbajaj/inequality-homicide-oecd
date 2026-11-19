@@ -2,7 +2,7 @@
 
 1. **World Bank, World Development Indicators (WDI)** — https://databank.worldbank.org/source/world-development-indicators / https://data.worldbank.org/
    - Intentional homicide rate (per 100,000 people); WDI Gini index. These appear in `processed/homicide_gini_oecd_2000_2019.csv`.
-   - Controls in the original controlled regressions: real GDP per capita (`NY.GDP.PCAP.KD`), unemployment (`SL.UEM.TOTL.ZS`), urbanization (`SP.URB.TOTL.IN.ZS`), and working-age population share (`SP.POP.1564.TO.ZS`). Note: some earlier exploratory calculations used alternative GDP series. The final scripts use the variables documented in the paper's later empirical revision.
+   - Controls in the original controlled regressions: GDP per capita measured using `NY.GDP.PCAP.PP.KD` (PPP-adjusted constant international dollars) for controlled pooled OLS and fixed-effects regressions, and `NY.GDP.PCAP.KD` (constant US dollars) for within–between analysis, unemployment (`SL.UEM.TOTL.ZS`), urbanization (`SP.URB.TOTL.IN.ZS`), and working-age population share (`SP.POP.1564.TO.ZS`). Both GDP series are preserved in `processed/panel_with_both_gdp_series_569.csv` and the exact original specifications are documented in `code/03_panel_models.R`. The difference should be explained in the paper; it is not a new harmonized specification.
    - World Bank data licensing: https://www.worldbank.org/ext/en/legal/terms-conditions/datasets (typically CC BY 4.0 plus World Bank additional terms).
 
 2. **OECD Income Distribution Database (IDD)** — https://www.oecd.org/en/data/datasets/income-and-wealth-distribution-database.html
