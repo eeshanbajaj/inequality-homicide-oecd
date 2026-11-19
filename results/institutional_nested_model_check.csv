@@ -1,0 +1,3 @@
+"specification","n","coefficient_market_gini","coefficient_redistribution","R_squared"
+"Market Gini + redistribution",30,0.110807158478009,-0.083668278966098,0.507016339554707
+"+ economic/demographic controls",30,0.0889660742331233,-0.0863998643427284,0.659520072000715
