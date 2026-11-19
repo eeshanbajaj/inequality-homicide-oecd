@@ -67,8 +67,6 @@ This reproduces the seven **illustrative** relative-correlation scenarios used f
 - `gdp_pc_ppp` (and `log_gdp_pc_ppp`): World Bank `NY.GDP.PCAP.PP.KD`, constant international dollars, PPP-adjusted. **This was used in the original controlled pooled OLS and fixed-effects models**, with pooled Gini coefficient `0.086746` and R² `0.655740`.
 - `gdp_per_capita` (and `log_gdp_per_capita`): World Bank `NY.GDP.PCAP.KD`, constant US dollars. **This was used in the original within–between specification**, yielding Gini coefficients `0.093750` (between) and `−0.020931` (within). The two-way fixed-effects Gini coefficient with PPP GDP was `−0.015404`.
 
-The two measures are **not identical or interchangeable**. Script `code/03_panel_models.R` explicitly matches the original model choices rather than quietly replacing a variable. The manuscript's Data/Empirical Strategy sections should clarify the measures used; a harmonized-GDP robustness check can be added separately if desired.
-
 See `results/gdp_version_regression_check.csv` for the verified comparison. You can run `source("code/03_panel_models.R")` to regenerate the main model checks. Source database values can be revised over time; the archived processed data preserve this replication version.
 
 ## Key outputs (previously verified)
