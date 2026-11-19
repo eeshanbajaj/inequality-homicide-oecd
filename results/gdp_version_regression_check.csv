@@ -1,0 +1,3 @@
+"GDP_series","WDI_indicator","gini_coefficient","log_gdp_coefficient","r_squared","observations"
+"Constant USD (recreated file)","NY.GDP.PCAP.KD",0.0898763082163204,-0.482478593060272,0.658928079731101,569
+"Constant PPP (original pooled model)","NY.GDP.PCAP.PP.KD",0.0867458652476802,-0.72914448896469,0.655740114792924,569
