@@ -8,12 +8,12 @@ This repository documents an observational study of income inequality and homici
 
 | Folder | Contents |
 |---|---|
-| `code/` | R scripts for descriptive analysis, institutional models, Krauth (2016) sensitivity analysis, and (once the complete panel is added) controlled panel and within–between models |
+| `code/` | R scripts for descriptive analysis, institutional models, Krauth (2016) sensitivity analysis, and controlled panel and within–between models |
 | `data/processed/` | Cleaned, matched World Bank panel (569 country-years, 37 countries) and the verified 30-country institutional dataset (351 underlying matched country-years) |
 | `results/` | Exported, previously calculated institutional checks and Krauth RCR results for Appendix Table A6 |
 | `paper/` | Placeholder for the final paper; no draft PDF included in this starter package |
 
-**Current replication status:** The descriptive World Bank results, the institutional regressions, and the RCR analysis have the required processed data here. The **controlled panel / within–between regressions** additionally require the 569-row panel **with World Bank controls**, which was not among the files supplied for this package. See [Complete the full-panel replication](#complete-the-full-panel-replication). Until then, this is a **partial**, not complete, replication package.
+**Current replication status:** The processed 569-observation panel with both GDP-per-capita measures is now provided, alongside the 30-country institutional sample. The original pooled, fixed-effects, and within–between specifications can be estimated without redownloading the World Bank controls. **Please run `code/run_all.R` successfully in RStudio before claiming end-to-end reproducibility.** The remaining appendix robustness scripts and final manuscript PDF are not yet included.
 
 ## Data sources and construction
 
@@ -38,7 +38,7 @@ See [`data/SOURCES.md`](data/SOURCES.md) for attribution and licensing links. Pl
    source("code/run_all.R")
    ```
 
-   This runs the self-contained descriptive and institutional models first. The controlled panel script runs **only if** `data/processed/panel_with_controls_569.csv` exists. RCR runs **only if** Krauth's package is installed (instructions below).
+   This runs the self-contained descriptive and institutional models first. The controlled panel script runs when `data/processed/panel_with_both_gdp_series_569.csv` is present. RCR runs **only if** Krauth's package is installed (instructions below).
 4. New tables and checks are written to `results/generated/`. Supplied original result CSVs stay in `results/`.
 
 ### Krauth (2016) RCR package
@@ -60,15 +60,16 @@ source("code/04_krauth_rcr.R")
 
 This reproduces the seven **illustrative** relative-correlation scenarios used for Appendix A6. The ranges are **maintained assumptions**, not estimates of the amount of omitted-variable bias. Consult Krauth (2016) for identification and inference, particularly near the estimated identification threshold.
 
-## Complete the full-panel replication
+## Main-panel GDP measures: important replication detail
 
-For the controlled pooled OLS, fixed-effects, and within–between estimates, add `data/processed/panel_with_controls_569.csv` containing the **exact** original 569-row estimation panel with these columns:
+`data/processed/panel_with_both_gdp_series_569.csv` includes **both** real GDP-per-capita measures, together with the original 569 observations and four other model variables:
 
-`country`, `iso3c`, `year`, `homicide_rate`, `gini`, `gdp_per_capita`, `unemployment_rate`, `urbanization_rate`, `working_age_share`.
+- `gdp_pc_ppp` (and `log_gdp_pc_ppp`): World Bank `NY.GDP.PCAP.PP.KD`, constant international dollars, PPP-adjusted. **This was used in the original controlled pooled OLS and fixed-effects models**, with pooled Gini coefficient `0.086746` and R² `0.655740`.
+- `gdp_per_capita` (and `log_gdp_per_capita`): World Bank `NY.GDP.PCAP.KD`, constant US dollars. **This was used in the original within–between specification**, yielding Gini coefficients `0.093750` (between) and `−0.020931` (within). The two-way fixed-effects Gini coefficient with PPP GDP was `−0.015404`.
 
-If the original RStudio session is saved and contains the object `df`, run `code/00_export_saved_panel.R` **in that original session** to export the needed columns; then move the exported CSV into `data/processed/` here. Do not substitute newly downloaded WDI controls without checking revisions against the paper's reported estimates. The original pipeline relied on the WDI download; its values can be updated over time.
+The two measures are **not identical or interchangeable**. Script `code/03_panel_models.R` explicitly matches the original model choices rather than quietly replacing a variable. The manuscript's Data/Empirical Strategy sections should clarify the measures used; a harmonized-GDP robustness check can be added separately if desired.
 
-Once the file has been added, run `source("code/03_panel_models.R")` and compare its coefficients and sample sizes with the paper before declaring full replication.
+See `results/gdp_version_regression_check.csv` for the verified comparison. You can run `source("code/03_panel_models.R")` to regenerate the main model checks. Source database values can be revised over time; the archived processed data preserve this replication version.
 
 ## Key outputs (previously verified)
 
